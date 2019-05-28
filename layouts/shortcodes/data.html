@@ -1,0 +1,155 @@
+{{ $path := split (.Get 0) "/" }}
+
+{{ $result := .Site.Data }}
+
+{{ range $key := $path }}
+  {{ $result = index $result $key }}
+{{ end }}
+
+{{ if not (eq $result.highlights nil) }}
+<section class="experienceIntro">
+  <p class="experienceHighlight">
+    <strong>
+      HIGHTLIGHTS:
+    </strong>
+    <br>
+    {{$result.highlights}}
+  </p>
+  <p class="experienceHighlight">
+    <strong>
+        {{$result.intro_experience}}
+    </strong>
+  </p>
+</section>
+{{ end }}
+<div class="experienceMainMin">
+  <section>
+    <div class="row">
+      <div class="col-md-12 col-xs-12 mb-5">
+        <ul class="experienceDetails" id="experienceDetails">
+            <h3>DETALLES DEL VIAJE</h3>
+            {{ if not (eq $result.time_service nil) }}
+            <li>
+                <h3><i class="fas fa-clock"></i>DURACIÓN SERVICIO</h3>
+                <p>{{$result.time_service}}</p>
+            </li>
+            {{ end }}
+            {{ if not (eq $result.number_travellers nil) }}
+            <li>
+                <h3><i class="fas fa-user-friends"></i>NUMERO VIAJEROS</h3>
+                <p>{{$result.number_travellers}}</p>
+            </li>
+            {{ end }}
+            {{ if not (eq $result.timming_1 nil) }}
+            <li>
+                <h3><i class="fas fa-clock"></i>HORARIO SERVICIO 1</h3>
+                <p>{{$result.timming_1}}<br></p>
+            </li>
+            {{ end }}
+            {{ if not (eq $result.timming_2 nil) }}
+            <li>
+                <h3><i class="fas fa-clock"></i>HORARIO SERVICIO 1</h3>
+                <p>{{$result.timming_2}}</p>
+            </li>
+            {{ end }}
+            {{ if not (eq $result.meeting_point nil) }}
+            <li>
+                <h3><i class="fas fa-map-marker-alt"></i>LUGAR DE ENCUENTRO</h3>
+                <p>{{$result.meeting_point}}</p>
+            </li>
+            {{ end }}
+            {{ if not (eq $result.difficulty nil) }}
+            <li>
+                <h3><i class="fas fa-signal"></i>GRADO DIFICULTAD</h3>
+                <p>{{$result.difficulty}}</p>
+            </li>
+            {{ end }}
+        </ul>
+      </div>
+      <div class="col-md-12 col-xs-12 mb-5">
+          <ul class="experienceInclude" id="experienceInclude">
+              <h3>INCLUYE</h3>
+              {{ if not (eq $result.host nil) }}
+              <li>
+                  <h3><i class="fas fa-id-badge"></i>ANFITRIÓN</h3>
+                  <p>{{$result.host}}
+                  </p>
+              </li>
+              {{ end }}
+              {{ if not (eq $result.language_service nil) }}
+              <li>
+                  <h3><i class="fas fa-globe"></i> IDIOMA SERVICIO</h3>
+                  <p>{{ $result.language_service | safeHTML }}
+                  </p>
+              </li>
+              {{ end }}
+              {{ if not (eq $result.type_vehicle nil) }}
+              <li>
+                  <h3><i class="fas fa-bus"></i>TIPO VEHICULO</h3>
+                  <p>{{$result.type_vehicle}}</p>
+              </li>
+              {{ end }}
+              {{ if not (eq $result.fees_included nil) }}
+              <li>
+                  <h3><i class="fas fa-ticket-alt"></i>ENTRADAS INCLUIDAS</h3>
+                  <p>{{ $result.fees_included | safeHTML }}</p>
+              </li>
+              {{ end }}
+              {{ if not (eq $result.meals nil) }}
+              <li>
+                  <h3><i class="fas fa-utensils"></i> ALIMENTACIÓN</h3>
+                  <p> {{ $result.meals | safeHTML }}</p>
+              </li>
+              {{ end }}
+              {{ if not (eq $result.beverages nil) }}
+              <li>
+                  <h3><i class="fas fa-utensils"></i> BEBESTIBLES</h3>
+                  <p> {{ $result.beverages | safeHTML }}</p>
+              </li>
+              {{ end }}
+          </ul>
+      </div>
+  </div>
+  </section>
+  <section class="experienceContent" id="experienceContent">
+    {{ if not (eq $result.description nil) }}
+    <h3>Itinerario</h3>
+    {{ $result.description | safeHTML }}
+    {{ end }}
+    <div class="row">
+        <div class="col 12">
+            <ul class="experienceTips" id="experienceTips">
+                {{ if not (eq $result.other_requirements nil) }}
+                <li>
+                    <h3><i class="fas fa-user-check"></i> REQUERIMIENTOS & OUTFIT</h3>
+                    <p>{{$result.other_requirements | safeHTML }}
+                    </p>
+                </li>
+            {{ end }}
+                <li>
+                    {{ if not (eq $result.restrictions nil) }}
+                    <h3> <i class="fas fa-ban"></i> RESTRICCIONES</h3>
+                    <p>
+                        {{ $result.restrictions | safeHTML }}
+                    </p>
+                </li>
+            {{ end }}
+            </ul>
+            <ul class="experienceNoInclude" id="experienceNoInclude">
+                {{ if not (eq $result.not_included nil) }}
+                  <li>
+                    <h3> <i class="fas fa-window-close"></i> NO INCLUYE</h3>
+                    <p>{{ $result.not_included  | safeHTML }}
+                      </p>
+                  </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+  </section>
+    {{ if not (eq $result.instagram_posts nil) }}
+  <section class="instagram">
+      {{ $result.instagram_posts | safeHTML }}
+  </section>
+    {{ end }}
+</div>

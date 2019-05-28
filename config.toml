@@ -1,2 +1,12 @@
+baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "My New Netlify Victor Hugo Site"
+title = "My New Hugo Site"
+[languages]
+  [languages.es]
+    title = "Bmytrip - contenido"
+    contentDir = "content/spanish"
+    languageName = "Español"
+  [languages.en]
+    title = "Bmytrip - content"
+    contentDir = "content/english"
+    languageName = "Inglés"
